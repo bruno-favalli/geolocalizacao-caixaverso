@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Explorador de Destinos</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>🌍 Explorador de Destinos</h1>
+        <p>Descubra novos lugares e salve seus favoritos!</p>
+      </header>
+
+      <!-- Seção: Localização do Usuário -->
+      <section class="location-section">
+        <h2>📍 Seu Ponto de Partida</h2>
+        <button id="btnLocation" class="btn btn-primary">
+          Obter Minha Localização
+        </button>
+        <div id="locationDisplay" class="info-box hidden">
+          <p><strong>Latitude:</strong> <span id="latitude">-</span></p>
+          <p><strong>Longitude:</strong> <span id="longitude">-</span></p>
+        </div>
+      </section>
+
+      <!-- Seção: Destino Sugerido -->
+      <section class="destination-section">
+        <h2>✈️ Destino Sugerido</h2>
+        <button id="btnNewDestination" class="btn btn-secondary">
+          Buscar Novo Destino
+        </button>
+        <div id="destinationDisplay" class="destination-card hidden">
+          <h3 id="destinationTitle">Carregando...</h3>
+          <p id="destinationBody">Onde quer estar?</p>
+          <p class="destination-id">
+            Post ID: <span id="destinationId">-</span>
+          </p>
+          <button id="btnSaveFavorite" class="btn btn-success">
+            💾 Salvar como Favorito
+          </button>
+        </div>
+      </section>
+
+      <!-- Seção: Favoritos Salvos -->
+      <section class="favorites-section">
+        <h2>⭐ Meus Destinos Favoritos</h2>
+        <input
+          type="text"
+          id="searchInput"
+          class="search-input"
+          placeholder="Pesquisar favoritos..."
+        />
+        <div id="favoritesList" class="favorites-list">
+          <p class="empty-message">Nenhum favorito salvo ainda.</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Link para o arquivo TypeScript compilado -->
+    <script src="script.js"></script>
+  </body>
+</html>
