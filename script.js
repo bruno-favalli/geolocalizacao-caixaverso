@@ -234,6 +234,15 @@ class DestinationExplorer {
         const countTotal = document.getElementById('countTotal');
         if (!counterDiv || !countDisplayed || !countTotal)
             return;
+        //mudando cor filtrados
+        if (displayed === total) {
+            counterDiv.style.borderLeftColor = '#f59e0b';
+            countDisplayed.style.color = '#f59e0b';
+        }
+        else {
+            counterDiv.style.borderLeftColor = '#6b7280';
+            countDisplayed.style.color = '#6b7280';
+        }
         // Esconder contador
         if (total === 0) {
             counterDiv.classList.add('hidden');
