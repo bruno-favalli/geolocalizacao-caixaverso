@@ -268,9 +268,7 @@ class DestinationExplorer {
     }
 
     
-    // EXIBIR FAVORITOS NO HTML
-    
-    
+    // EXIBIR FAVORITOS NO HTML   
     private displayFavorites(): void {
         const favoritesList = document.getElementById('favoritesList');
         
@@ -293,6 +291,8 @@ class DestinationExplorer {
             
             
             }
+
+            this.updateCounter(favoritesToDisplay.length, this.favorites.length);
             
         if (this.favorites.length === 0) {
             favoritesList.innerHTML = '<p class="empty-message">Nenhum favorito salvo ainda.</p>';
@@ -319,6 +319,9 @@ class DestinationExplorer {
                     <p>ID: ${favorite.id} | Salvo em: ${favorite.savedAt}</p>
                 </div>
                 <button class="btn btn-danger" data-index="${originalIndex}">🗑️Remover</button>
+
+              
+                
             `;
             const removeBtn = favoriteItem.querySelector('.btn-danger');
             removeBtn?.addEventListener('click', () => {
@@ -327,9 +330,33 @@ class DestinationExplorer {
 
             favoritesList.appendChild(favoriteItem);
             
+            console.log(this.favorites.length);
+
+
         });
 
        
+    }
+
+    private updateCounter(displayed: number, total: number): void {
+        
+        const counterDiv = document.getElementById('favoritesCounter');
+        const countDisplayed = document.getElementById('countDisplayed');
+        const countTotal = document.getElementById('countTotal');
+        
+        if (!counterDiv || !countDisplayed || !countTotal) return;
+        
+        // Esconder contador
+        if (total === 0) {
+            counterDiv.classList.add('hidden');
+            return;
+        }
+        
+        counterDiv.classList.remove('hidden');
+        countDisplayed.textContent = displayed.toString();
+        countTotal.textContent = total.toString();
+        
+        console.log(`Contador atualizado: ${displayed}/${total}`);
     }
     
     private removeFavorite(index: number): void {

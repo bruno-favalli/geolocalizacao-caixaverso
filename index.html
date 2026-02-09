@@ -52,6 +52,16 @@
           class="search-input"
           placeholder="Pesquisar favoritos..."
         />
+
+        <div id="favoritesCounter" class="favorites-counter hidden">
+          <p>
+            📊 Mostrando
+            <strong id="countDisplayed">0</strong>
+            de
+            <strong id="countTotal">0</strong>
+            favoritos
+          </p>
+        </div>
         <div id="favoritesList" class="favorites-list">
           <p class="empty-message">Nenhum favorito salvo ainda.</p>
         </div>
@@ -59,6 +69,6 @@
     </div>
 
     <!-- Link para o arquivo TypeScript compilado -->
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
   </body>
 </html>

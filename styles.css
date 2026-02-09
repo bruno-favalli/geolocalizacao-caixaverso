@@ -205,6 +205,31 @@ section h2 {
   flex: 1;
 }
 
+.favorites-counter {
+  background: linear-gradient(135deg, #10b98120 0%, #05966920 100%);
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border-left: 4px solid #10b981;
+  text-align: center;
+}
+
+.favorites-counter p {
+  margin: 0;
+  font-size: 1.1em;
+  color: #333;
+}
+
+.favorites-counter strong {
+  color: #10b981;
+  font-size: 1.2em;
+}
+
+/* Quando não há favoritos, esconder */
+.favorites-counter.hidden {
+  display: none;
+}
+
 .favorite-content h4 {
   color: #333;
   margin-bottom: 5px;

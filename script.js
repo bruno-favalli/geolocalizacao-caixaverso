@@ -8,7 +8,7 @@ class DestinationExplorer {
     constructor() {
         this.init();
     }
-    // INICIAR
+    // INICIAR APLICAÇÃO
     init() {
         console.log('Aplicação iniciada');
         this.loadFavoritesFromStorage();
@@ -175,7 +175,7 @@ class DestinationExplorer {
             this.favorites = [];
         }
     }
-    // EXIBIR FAVORITOS NO HTML
+    // EXIBIR FAVORITOS NO HTML   
     displayFavorites() {
         const favoritesList = document.getElementById('favoritesList');
         if (!favoritesList)
@@ -193,6 +193,7 @@ class DestinationExplorer {
             console.log(`Encontrados: ${favoritesToDisplay.length} de ${this.favorites.length}`);
             console.log(favoritesToDisplay);
         }
+        this.updateCounter(favoritesToDisplay.length, this.favorites.length);
         if (this.favorites.length === 0) {
             favoritesList.innerHTML = '<p class="empty-message">Nenhum favorito salvo ainda.</p>';
             return;
@@ -215,13 +216,33 @@ class DestinationExplorer {
                     <p>ID: ${favorite.id} | Salvo em: ${favorite.savedAt}</p>
                 </div>
                 <button class="btn btn-danger" data-index="${originalIndex}">🗑️Remover</button>
+
+              
+                
             `;
             const removeBtn = favoriteItem.querySelector('.btn-danger');
             removeBtn?.addEventListener('click', () => {
                 this.removeFavorite(originalIndex);
             });
             favoritesList.appendChild(favoriteItem);
+            console.log(this.favorites.length);
         });
+    }
+    updateCounter(displayed, total) {
+        const counterDiv = document.getElementById('favoritesCounter');
+        const countDisplayed = document.getElementById('countDisplayed');
+        const countTotal = document.getElementById('countTotal');
+        if (!counterDiv || !countDisplayed || !countTotal)
+            return;
+        // Esconder contador
+        if (total === 0) {
+            counterDiv.classList.add('hidden');
+            return;
+        }
+        counterDiv.classList.remove('hidden');
+        countDisplayed.textContent = displayed.toString();
+        countTotal.textContent = total.toString();
+        console.log(`Contador atualizado: ${displayed}/${total}`);
     }
     removeFavorite(index) {
         // Remover do array (splice remove 1 elemento na posição 'index')
