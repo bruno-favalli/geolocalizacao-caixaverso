@@ -42,6 +42,7 @@ class DestinationExplorer {
                 this.displayFavorites();
             });
         }
+        //para limpar a busca
         const btnClearSearch = document.getElementById('btnClearSearch');
         if (btnClearSearch) {
             btnClearSearch.addEventListener('click', () => {
@@ -63,19 +64,31 @@ class DestinationExplorer {
         }
     }
     clearSearch() {
-        // 1. Limpar a propriedade searchTerm
+        // Limpar a propriedade searchTerm
         this.searchTerm = '';
-        // 2. Limpar o input visualmente
+        // Limpar o input 
         const searchInput = document.getElementById('searchInput');
         if (searchInput) {
             searchInput.value = '';
-            searchInput.focus(); // Opcional: foca no input após limpar
+            searchInput.focus();
         }
-        // 3. Esconder o botão de limpar
+        // Esconder o botão de limpar
         this.toggleClearButton();
-        // 4. Atualizar a lista (mostra todos os favoritos)
+        // Atualizar a lista (mostra todos os favoritos)
         this.displayFavorites();
         console.log('🧹 Busca limpa!');
+    }
+    //Destacar TEXTO
+    highlightSearchTerm(text) {
+        if (!this.searchTerm || this.searchTerm.trim() === '') {
+            return text;
+        }
+        // Para caracteres especiais
+        const escapedSearch = this.searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const regex = new RegExp(`(${escapedSearch})`, 'gi');
+        const highlighted = text.replace(regex, '<mark>$1</mark>');
+        console.log(`Destacando: "${this.searchTerm}" em "${text}"`);
+        return highlighted;
     }
     // Buscar dados da API 
     async fetchRandomDestination() {
@@ -245,9 +258,10 @@ class DestinationExplorer {
             const originalIndex = this.favorites.indexOf(favorite);
             const favoriteItem = document.createElement('div');
             favoriteItem.className = 'favorite-item';
+            const highlightedTitle = this.highlightSearchTerm(favorite.title);
             favoriteItem.innerHTML = `
                 <div class="favorite-content">
-                    <h4>${favorite.title}</h4>
+                    <h4>${highlightedTitle}</h4>
                     <p>ID: ${favorite.id} | Salvo em: ${favorite.savedAt}</p>
                 </div>
                 <button class="btn btn-danger" data-index="${originalIndex}">🗑️Remover</button>
