@@ -273,3 +273,36 @@ section h2 {
     margin-top: 10px;
   }
 }
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  padding-right: 45px;
+}
+
+.btn-clear-search {
+  position: absolute;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: all 0.3s ease;
+  color: #9ca3af;
+}
+
+.btn-clear-search:hover {
+  color: #ef4444;
+  transform: scale(1.2);
+  background: #fee;
+  border-radius: 4px;
+}
+
+.btn-clear-search.hidden {
+  display: none;
+}

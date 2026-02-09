@@ -38,11 +38,46 @@ class DestinationExplorer {
                 const target = event.target;
                 this.searchTerm = target.value.toLowerCase();
                 console.log('🔍buscando por:', this.searchTerm);
+                this.toggleClearButton();
                 this.displayFavorites();
             });
         }
+        const btnClearSearch = document.getElementById('btnClearSearch');
+        if (btnClearSearch) {
+            btnClearSearch.addEventListener('click', () => {
+                this.clearSearch();
+            });
+        }
     }
-    // Buscar dados da API
+    toggleClearButton() {
+        const btnClearSearch = document.getElementById('btnClearSearch');
+        if (!btnClearSearch)
+            return;
+        //mostrar botao se tiver texto
+        if (this.searchTerm.trim() !== '') {
+            btnClearSearch.classList.remove('hidden');
+        }
+        else {
+            // Se não há texto, esconder botão
+            btnClearSearch.classList.add('hidden');
+        }
+    }
+    clearSearch() {
+        // 1. Limpar a propriedade searchTerm
+        this.searchTerm = '';
+        // 2. Limpar o input visualmente
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.value = '';
+            searchInput.focus(); // Opcional: foca no input após limpar
+        }
+        // 3. Esconder o botão de limpar
+        this.toggleClearButton();
+        // 4. Atualizar a lista (mostra todos os favoritos)
+        this.displayFavorites();
+        console.log('🧹 Busca limpa!');
+    }
+    // Buscar dados da API 
     async fetchRandomDestination() {
         try {
             const randomId = Math.floor(Math.random() * 100) + 1;
